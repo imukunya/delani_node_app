@@ -1,9 +1,13 @@
 
 let path = require('path');
 let fs = require('fs');
+let Logger = require('./logger');
+let logger = new Logger('Router');
+
 function route(handle, pathname,response, request){
-    
+    logger.info("About to route a request for " + pathname);
     console.log("About to route a request for " + pathname);
+
     // Check if the request url is a function. since we mapped the our expected request urls to a function in request handlers
     if (typeof handle[pathname]==='function'){
         handle[pathname](response)
@@ -24,6 +28,7 @@ function route(handle, pathname,response, request){
        jsStream.pipe(response);
 
    }else{
+       logger.info("No request handler found for " + pathname);
        console.log("No request handler found for " + pathname);
        response.writeHead(404, {"Content-Type": "text/html"});
        response.write("<h1>404 Not found</h1>");
