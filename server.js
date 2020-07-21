@@ -22,8 +22,7 @@ let start = function(route, handle){
    http.createServer(onRequest).listen(PORT);
    logger.info(`Server has started on Port: ${PORT}`)
    console.log(`Server has started on Port: ${PORT}`);
-  
-   console.log("Server has started.")
+   
 }
 
 exports.start = start;
